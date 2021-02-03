@@ -24,7 +24,7 @@ Do you use it? **Star it!**
 | Github / Docker Image tag | PHP Version | Composer version | Multiple Architectures |
 | ------------------ | ----------- | ---------------- | ----------------------- |
 | latest | 8.0.1 | 2.0.9 | linux/386,linux/amd64,linux/arm/v6,linux/arm/v7 |
-| NEXT | 8.0.1 | 2.0.9 | linux/386,linux/amd64,linux/arm/v6,linux/arm/v7 |
+| 8.0.1.4 | 8.0.1 | 2.0.9 | linux/386,linux/amd64,linux/arm/v6,linux/arm/v7 |
 | 8.0.1-3 | 8.0.1 | 2.0.9 | AMD64 - ARMv6 - ARMv7 |
 | 8.0.1-2 | 8.0.1 | 2.0.9 | AMD64 - ARMv7 |
 
