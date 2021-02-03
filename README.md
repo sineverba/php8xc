@@ -23,8 +23,8 @@ Do you use it? **Star it!**
 
 | Github / Docker Image tag | PHP Version | Composer version | Multiple Architectures |
 | ------------------ | ----------- | ---------------- | ----------------------- |
-| latest | 8.0.1 | 2.0.9 | AMD64 - ARMv6 - ARMv7 |
-| 8.0.1-1 | 8.0.1 | 2.0.9 | AMD64 - ARMv6 - ARMv7 |
+| latest | 8.0.1 | 2.0.9 | AMD64 - ARMv7 |
+| 8.0.1-2 | 8.0.1 | 2.0.9 | AMD64 - ARMv7 |
 
 ## Xdebug and settings
 
