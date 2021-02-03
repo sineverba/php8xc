@@ -29,13 +29,13 @@ blocks:
             - checkout
             - docker build --tag $DOCKER_USERNAME/$DOCKER_IMAGE .
             - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -v | grep 8.0.1
-          - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -v | grep OPcache
-          - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -m | grep xdebug
-          - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -r "xdebug_info();" | grep "3.0.2"
-          - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -m | grep pdo_pgsql
-          - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE /usr/bin/composer -V | grep "2.0.9"
-          - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -i | grep "short_open_tag => Off => Off"
-          - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -i | grep "memory_limit => 512M => 512M"
+            - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -v | grep OPcache
+            - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -m | grep xdebug
+            - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -r "xdebug_info();" | grep "3.0.2"
+            - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -m | grep pdo_pgsql
+            - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE /usr/bin/composer -V | grep "2.0.9"
+            - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -i | grep "short_open_tag => Off => Off"
+            - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -i | grep "memory_limit => 512M => 512M"
       secrets:
         - name: DOCKER_TOKEN
 
