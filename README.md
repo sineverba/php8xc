@@ -6,7 +6,7 @@ php8xc: Docker image for PHP8 + Xdebug + Composer
 
 | CD / CI   |           |
 | --------- | --------- |
-| Travis CI | [![Build Status](https://travis-ci.com/sineverba/php8xc.svg?branch=master)](https://travis-ci.com/sineverba/php8xc) |
+| Semaphore CI | [![Build Status](https://sineverba.semaphoreci.com/badges/php8xc/branches/master.svg)](https://sineverba.semaphoreci.com/projects/php8xc) |
 
 
 
@@ -23,7 +23,8 @@ Do you use it? **Star it!**
 
 | Github / Docker Image tag | PHP Version | Composer version | Multiple Architectures |
 | ------------------ | ----------- | ---------------- | ----------------------- |
-| latest | 8.0.1 | 2.0.9 | AMD64 - ARMv7 |
+| latest | 8.0.1 | 2.0.9 | AMD64 - ARMv6 - ARMv7 |
+| 8.0.1-3 | 8.0.1 | 2.0.9 | AMD64 - ARMv6 - ARMv7 |
 | 8.0.1-2 | 8.0.1 | 2.0.9 | AMD64 - ARMv7 |
 
 ## Xdebug and settings
