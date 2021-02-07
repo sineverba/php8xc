@@ -1,4 +1,4 @@
-FROM php:8.0.1-cli
+FROM php:8.0.2-cli
 
 # OpCache settings
 ENV PHP_OPCACHE_VALIDATE_TIMESTAMPS="0"
