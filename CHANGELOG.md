@@ -1,4 +1,4 @@
-# Next version
+# 8.0.2
 + Bump to PHP8.0.2
 
 ## 8.0.1-4
