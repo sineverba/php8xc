@@ -10,7 +10,7 @@ php8xc: Docker image for PHP8 + Xdebug + Composer
 
 
 
-Docker image built from **PHP8.y.z** CLI official + **X**debug + **C**omposer, forlinux/386, linux/amd64, linux/arm/v6, linux/arm/v7 architectures.
+Docker image built from **PHP8.y.z** CLI official + **X**debug + **C**omposer, for `linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64` architectures.
 
 Short tags are __OFF__.
 
@@ -19,11 +19,12 @@ Image ready to use as alias for development.
 Do you use it? **Star it!**
 
 
-## Github / image tags vs PHP version
+## Github / image tags and versions
 
 | Github / Docker Image tag | PHP Version | Composer version | Multiple Architectures |
 | ------------------ | ----------- | ---------------- | ----------------------- |
-| latest | 8.0.1 | 2.0.9 | linux/386,linux/amd64,linux/arm/v6,linux/arm/v7 |
+| latest | 8.0.2 | 2.0.9 | linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 |
+| 8.0.2 | 8.0.2 | 2.0.9 | linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 |
 | 8.0.1.4 | 8.0.1 | 2.0.9 | linux/386,linux/amd64,linux/arm/v6,linux/arm/v7 |
 | 8.0.1-3 | 8.0.1 | 2.0.9 | AMD64 - ARMv6 - ARMv7 |
 | 8.0.1-2 | 8.0.1 | 2.0.9 | AMD64 - ARMv7 |
