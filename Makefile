@@ -2,10 +2,10 @@ build:
 		docker build --tag sineverba/testphp8xc .
 
 multiple:
-		docker buildx build --tag sineverba/testphp8xc --platform linux/386,linux/amd64,linux/arm/v6,linux/arm/v7 --push .
+		docker buildx build --tag sineverba/testphp8xc --platform linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 --push .
 
 test:
-		@docker run --rm sineverba/testphp8xc php -v | grep 8.0.1
+		@docker run --rm sineverba/testphp8xc php -v | grep 8.0.2
 		@docker run --rm sineverba/testphp8xc php -v | grep OPcache
 		@docker run --rm sineverba/testphp8xc php -m | grep xdebug
 		@docker run --rm sineverba/testphp8xc php -r "xdebug_info();" | grep "3.0.2"
