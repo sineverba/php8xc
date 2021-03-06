@@ -1,4 +1,4 @@
-# Next version
+# 1.0.0
 + Bump versions
 
 ## Old version
