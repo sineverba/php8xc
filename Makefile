@@ -11,7 +11,7 @@ test:
 		@docker run --rm sineverba/testphp8xc php -r "xdebug_info();" | grep "3.0.3"
 		@docker run --rm sineverba/testphp8xc php -m | grep pdo_pgsql
 		@docker run --rm sineverba/testphp8xc php -m | grep zip
-		@docker run --rm sineverba/testphp8xc /usr/bin/composer -V | grep "2.0.11"
+		@docker run --rm sineverba/testphp8xc /usr/bin/composer -V | grep "2.0.12"
 		@docker run --rm sineverba/testphp8xc php -i | grep "short_open_tag => Off => Off"
 		@docker run --rm sineverba/testphp8xc php -i | grep "memory_limit => 512M => 512M"
 
