@@ -1,4 +1,7 @@
-# 1.1.2
+# 1.1.3
++ Fix multiarch swapping qemu
+
+## 1.1.2
 + Try fix multiarch
 
 ## 1.1.1
