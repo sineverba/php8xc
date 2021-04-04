@@ -1,4 +1,7 @@
-# 1.1.3
+# 1.1.4
++ Restore all platforms
+
+## 1.1.3
 + Fix multiarch swapping qemu
 
 ## 1.1.2
