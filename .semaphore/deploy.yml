@@ -36,6 +36,6 @@ blocks:
             - docker buildx ls
             - docker buildx create --name multiarch --driver docker-container --use
             - docker buildx inspect --bootstrap --builder multiarch
-            - docker buildx build --platform linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/arm64/v8 --tag $DOCKER_USERNAME/$DOCKER_IMAGE:$SEMAPHORE_GIT_TAG_NAME --tag $DOCKER_USERNAME/$DOCKER_IMAGE:latest --push .
+            - docker buildx build --platform linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 --tag $DOCKER_USERNAME/$DOCKER_IMAGE:$SEMAPHORE_GIT_TAG_NAME --tag $DOCKER_USERNAME/$DOCKER_IMAGE:latest --push .
       secrets:
         - name: DOCKER_TOKEN
