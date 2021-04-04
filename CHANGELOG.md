@@ -1,4 +1,4 @@
-# Next version
+# 1.1.0
 + Update composer to `2.0.12`
 
 ## 1.0.0
