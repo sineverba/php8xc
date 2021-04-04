@@ -1,4 +1,7 @@
-# 1.1.4
+# 1.1.5
++ Fix platforms
+
+## 1.1.4
 + Restore all platforms
 
 ## 1.1.3
