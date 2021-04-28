@@ -1,4 +1,7 @@
-# 1.1.5
+# 1.2.0
++ Upgrade dependencies
+
+## 1.1.5
 + Fix platforms
 
 ## 1.1.4
