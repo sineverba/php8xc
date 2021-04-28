@@ -20,14 +20,14 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Setup PHPXDebug
-RUN pecl install xdebug-3.0.3
+RUN pecl install xdebug-3.0.4
 
 # Install PHP extensions
 RUN docker-php-ext-install mysqli pdo pdo_mysql pdo_pgsql mbstring exif pcntl bcmath gd opcache zip \
     && docker-php-ext-enable mysqli pdo pdo_mysql pdo_pgsql mbstring exif pcntl bcmath gd xdebug
 
 # Get latest Composer
-COPY --from=composer:2.0.12 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.0.13 /usr/bin/composer /usr/bin/composer
 
 # Add custom ini files
 COPY config/10-shorttag.ini \
