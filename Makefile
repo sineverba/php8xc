@@ -13,7 +13,7 @@ multiple:
 	docker buildx build --tag sineverba/php8xc:latest --tag sineverba/php8xc:1.1.0 --platform linux/amd64,linux/armhf,linux/arm64 --push .
 
 test:
-	@docker run --rm sineverba/testphp8xc php -v | grep 8.0.3
+	@docker run --rm sineverba/testphp8xc php -v | grep 8.0.6
 	@docker run --rm sineverba/testphp8xc php -v | grep OPcache
 	@docker run --rm sineverba/testphp8xc php -m | grep xdebug
 	@docker run --rm sineverba/testphp8xc php -r "xdebug_info();" | grep "3.0.4"

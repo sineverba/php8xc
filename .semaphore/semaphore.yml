@@ -28,7 +28,7 @@ blocks:
           commands:
             - checkout
             - docker build --tag $DOCKER_USERNAME/$DOCKER_IMAGE .
-            - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -v | grep 8.0.3
+            - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -v | grep 8.0.6
             - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -v | grep OPcache
             - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -m | grep xdebug
             - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -r "xdebug_info();" | grep "3.0.4"

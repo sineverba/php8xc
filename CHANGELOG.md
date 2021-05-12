@@ -1,4 +1,7 @@
-# 1.2.0
+# Next version
++ Upgrade PHP to 8.0.6
+
+## 1.2.0
 + Upgrade dependencies
 
 ## 1.1.5
