@@ -1,4 +1,7 @@
-# 1.4.0
+# Next version
++ Upgrade versions
+
+## 1.4.0
 + Upgrade PHP to 8.0.7
 + Upgrade Composer to 2.0.14
 
