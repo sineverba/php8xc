@@ -1,4 +1,4 @@
-FROM php:8.0.9-cli
+FROM php:8.0.11-cli
 
 # OpCache settings
 ENV PHP_OPCACHE_VALIDATE_TIMESTAMPS="0"
@@ -27,7 +27,7 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql pdo_pgsql mbstring exif pcntl bc
     && docker-php-ext-enable mysqli pdo pdo_mysql pdo_pgsql mbstring exif pcntl bcmath gd xdebug
 
 # Get latest Composer
-COPY --from=composer:2.1.5 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.1.8 /usr/bin/composer /usr/bin/composer
 
 # Add custom ini files
 COPY config/10-shorttag.ini \
