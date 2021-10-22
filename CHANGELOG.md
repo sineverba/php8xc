@@ -1,4 +1,7 @@
-# 1.6.0
+# Next version
++ Upgrade versions
+
+## 1.6.0
 + Upgrade versions
 
 ## 1.5.0
