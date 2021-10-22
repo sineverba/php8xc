@@ -4,13 +4,13 @@ build:
 multiple:
 	# docker login --username=sineverba
 	mkdir -vp ~/.docker/cli-plugins/
-    curl --silent -L "https://github.com/docker/buildx/releases/download/v0.5.1/buildx-v0.5.1.linux-amd64" > ~/.docker/cli-plugins/docker-buildx
+    curl --silent -L "https://github.com/docker/buildx/releases/download/v0.6.3/buildx-v0.6.3.linux-amd64" > ~/.docker/cli-plugins/docker-buildx
 	chmod a+x ~/.docker/cli-plugins/docker-buildx
 	docker buildx version
-	docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+	docker run --rm --privileged tonistiigi/binfmt:qemu-v6.1.0 --reset -p yes
 	docker buildx create --name mybuilder && docker buildx use mybuilder && docker buildx inspect --bootstrap
-	# docker buildx build --tag sineverba/php8xc:latest --tag sineverba/php8xc:1.1.0 --platform linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 --push .
-	docker buildx build --tag sineverba/php8xc:latest --tag sineverba/php8xc:1.1.0 --platform linux/amd64,linux/armhf,linux/arm64 --push .
+	# docker buildx build --tag sineverba/php8xc:latest --tag sineverba/php8xc:1.8.0 --platform linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 --push .
+	docker buildx build --tag sineverba/php8xc:latest --tag sineverba/php8xc:1.8.0 --platform linux/amd64,linux/armhf,linux/arm64 --push .
 
 test:
 	@docker run --rm sineverba/testphp8xc php -v | grep 8.0.12
