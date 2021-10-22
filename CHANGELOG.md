@@ -1,5 +1,6 @@
-# Next version
+# 1.7.0
 + Upgrade versions
++ Upgrade images for multi images
 
 ## 1.6.0
 + Upgrade versions
