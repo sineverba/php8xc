@@ -23,7 +23,8 @@ Do you use it? **Star it!**
 
 | Github / Docker Image tag | PHP Version | Composer version | XDebug | Architectures |
 | ------------------------- | ----------- | ---------------- | ------ | ------------- |
-| latest | 8.0.12 | 2.1.9 | 3.1.1 | linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 |
+| latest | 8.1.0 | 2.1.14 | 3.1.2 | linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 |
+| 1.8.0 | 8.1.0 | 2.1.14 | 3.1.2 | linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 |
 | 1.7.0 | 8.0.12 | 2.1.9 | 3.1.1 | linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 |
 | 1.6.0 | 8.0.11 | 2.1.8 | 3.0.4 | linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 |
 | 1.5.0 | 8.0.9 | 2.1.5  | 3.0.4 | linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 |
