@@ -13,8 +13,8 @@ multiple:
 	docker buildx version
 	docker run --rm --privileged tonistiigi/binfmt:qemu-v6.1.0 --reset -p yes
 	docker buildx create --name mybuilder && docker buildx use mybuilder && docker buildx inspect --bootstrap
-	# docker buildx build --tag sineverba/php8xc:latest --tag sineverba/php8xc:1.8.0 --platform linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 --push .
-	docker buildx build --tag sineverba/php8xc:latest --tag sineverba/php8xc:1.8.0 --platform linux/amd64,linux/armhf,linux/arm64 --push .
+	# docker buildx build --tag sineverba/php8xc:latest --tag sineverba/php8xc:1.9.0 --platform linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 --push .
+	docker buildx build --tag sineverba/php8xc:latest --tag sineverba/php8xc:1.9.0 --platform linux/amd64,linux/armhf,linux/arm64 --push .
 
 test:
 	@docker run --rm $(IMAGE_NAME) php -v | grep 8.1.3
