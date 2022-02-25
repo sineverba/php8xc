@@ -1,14 +1,17 @@
 version: v1.0
 
-name: Build and deploy Pipeline
+name: Build and deploy
 agent:
   machine:
     type: e1-standard-2
-    os_image: ubuntu1804
+    os_image: ubuntu2004
 execution_time_limit:
   hours: 3
 
 global_job_config:
+
+  secrets:
+    - name: ACCESS_TOKENS
 
   prologue:
     commands:
@@ -19,6 +22,10 @@ global_job_config:
       value: sineverba
     - name: DOCKER_IMAGE
       value: php8xc
+    - name: BUILDX_VERSION
+      value: 0.7.1
+    - name: BINFMT_VERSION
+      value: qemu-v6.2.0-25
 
 blocks:
   - name: 'Build and deploy'
@@ -27,15 +34,12 @@ blocks:
         - name: 'Build and deploy'
           commands:
             - checkout
-            - docker -v
             - mkdir -vp ~/.docker/cli-plugins/
-            - curl --silent -L "https://github.com/docker/buildx/releases/download/v0.6.3/buildx-v0.6.3.linux-amd64" > ~/.docker/cli-plugins/docker-buildx
+            - curl --silent -L "https://github.com/docker/buildx/releases/download/v$BUILDX_VERSION/buildx-v$BUILDX_VERSION.linux-amd64" > ~/.docker/cli-plugins/docker-buildx
             - chmod a+x ~/.docker/cli-plugins/docker-buildx
             - docker buildx version
-            - docker run --rm --privileged tonistiigi/binfmt:qemu-v6.1.0 --install all
+            - docker run --rm --privileged tonistiigi/binfmt:$BINFMT_VERSION --install all
             - docker buildx ls
             - docker buildx create --name multiarch --driver docker-container --use
             - docker buildx inspect --bootstrap --builder multiarch
             - docker buildx build --platform linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 --tag $DOCKER_USERNAME/$DOCKER_IMAGE:$SEMAPHORE_GIT_TAG_NAME --tag $DOCKER_USERNAME/$DOCKER_IMAGE:latest --push .
-      secrets:
-        - name: DOCKER_TOKEN
