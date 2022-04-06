@@ -17,13 +17,13 @@ multiple:
 	docker buildx build --tag sineverba/php8xc:latest --tag sineverba/php8xc:1.9.0 --platform linux/amd64,linux/armhf,linux/arm64 --push .
 
 test:
-	@docker run --rm $(IMAGE_NAME) php -v | grep 8.1.3
+	@docker run --rm $(IMAGE_NAME) php -v | grep 8.1.4
 	@docker run --rm $(IMAGE_NAME) php -v | grep OPcache
 	@docker run --rm $(IMAGE_NAME) php -m | grep xdebug
-	@docker run --rm $(IMAGE_NAME) php -r "xdebug_info();" | grep "3.1.3"
+	@docker run --rm $(IMAGE_NAME) php -r "xdebug_info();" | grep "3.1.4"
 	@docker run --rm $(IMAGE_NAME) php -m | grep pdo_pgsql
 	@docker run --rm $(IMAGE_NAME) php -m | grep zip
-	@docker run --rm $(IMAGE_NAME) /usr/bin/composer -V | grep "2.2.6"
+	@docker run --rm $(IMAGE_NAME) /usr/bin/composer -V | grep "2.3.3"
 	@docker run --rm $(IMAGE_NAME) php -i | grep "short_open_tag => Off => Off"
 	@docker run --rm $(IMAGE_NAME) php -i | grep "memory_limit => 512M => 512M"
 
