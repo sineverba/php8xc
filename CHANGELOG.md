@@ -1,4 +1,7 @@
-# 1.9.0
+# Next version
++ Upgrade dependencies
+
+## 1.9.0
 + Upgrade dependencies
 
 ## 1.8.0

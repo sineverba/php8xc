@@ -23,9 +23,9 @@ global_job_config:
     - name: DOCKER_IMAGE
       value: php8xc
     - name: BUILDX_VERSION
-      value: 0.7.1
+      value: 0.8.2
     - name: BINFMT_VERSION
-      value: qemu-v6.2.0-25
+      value: qemu-v6.2.0-26
 
 blocks:
   - name: 'Build and deploy'
