@@ -1,4 +1,4 @@
-FROM php:8.1.4-cli
+FROM php:8.1.11-cli
 
 # OpCache settings
 ENV PHP_OPCACHE_VALIDATE_TIMESTAMPS="0"
@@ -20,14 +20,14 @@ RUN apt-get update -y && apt-get upgrade -y && apt-get install -y \
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Setup PHPXDebug
-RUN pecl install xdebug-3.1.4
+RUN pecl install xdebug-3.1.5
 
 # Install PHP extensions
 RUN docker-php-ext-install mysqli pdo pdo_mysql pdo_pgsql mbstring exif pcntl bcmath gd opcache zip \
     && docker-php-ext-enable mysqli pdo pdo_mysql pdo_pgsql mbstring exif pcntl bcmath gd xdebug
 
 # Get latest Composer
-COPY --from=composer:2.3.3 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.4.3 /usr/bin/composer /usr/bin/composer
 
 # Add custom ini files
 COPY config/10-shorttag.ini \

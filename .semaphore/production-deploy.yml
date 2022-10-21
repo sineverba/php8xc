@@ -1,6 +1,6 @@
 version: v1.0
 
-name: Build and deploy
+name: Build and deploy Pipeline
 agent:
   machine:
     type: e1-standard-2
@@ -23,9 +23,9 @@ global_job_config:
     - name: DOCKER_IMAGE
       value: php8xc
     - name: BUILDX_VERSION
-      value: 0.8.2
+      value: 0.9.1
     - name: BINFMT_VERSION
-      value: qemu-v6.2.0-26
+      value: qemu-v7.0.0-28
 
 blocks:
   - name: 'Build and deploy'
