@@ -24,6 +24,7 @@ Do you use it? **Star it!**
 | Github / Docker Image tag | PHP Version | Composer version | XDebug | Architectures |
 |---------------------------|-------------|------------------|--------| ------------- |
 | latest | 8.2.1 | 2.5.1 | 3.2.0 | linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 |
+| 1.12.0 | 8.2.1 | 2.5.1 | 3.2.0 | linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 |
 | 1.11.0                    | 8.1.11 | 2.4.3            | 3.1.5  | linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 |
 | 1.10.0                    | 8.1.4       | 2.3.3            | 3.1.4  | linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 |
 | 1.9.0                     | 8.1.3       | 2.2.6            | 3.1.3  | linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 |
@@ -130,8 +131,8 @@ services:
 ``` bash
 $ cd ~
 $ nano .bashrc
-$ alias php='docker run -it -w /data -v ${PWD}:/data --entrypoint php --rm sineverba/php8xc:1.9.0'
-$ alias composer='docker run -it -w /data -v ${PWD}:/data --entrypoint "/usr/bin/composer" --rm sineverba/php8xc:1.9.0'
+$ alias php='docker run -it -w /data -v ${PWD}:/data --entrypoint php --rm sineverba/php8xc:1.12.0'
+$ alias composer='docker run -it -w /data -v ${PWD}:/data --entrypoint "/usr/bin/composer" --rm sineverba/php8xc:1.12.0'
 ```
 
 ### Issues with memory limit (on composer)
