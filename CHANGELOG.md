@@ -1,4 +1,4 @@
-# Next version
+# 1.13.0
 + Upgrade dependencies
 
 ## 1.12.0
