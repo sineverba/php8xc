@@ -11,3 +11,9 @@ storage/framework/sessions/*
 storage/framework/views/*
 storage/logs/*
 vendor
+CHANGELOG.md
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+LICENSE
+Makefile
+README.md
