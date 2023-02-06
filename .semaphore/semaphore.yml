@@ -1,6 +1,6 @@
 version: v1.0
 
-name: Build and test
+name: Test
 agent:
   machine:
     type: e1-standard-2
@@ -30,8 +30,8 @@ blocks:
         - name: 'Build and test'
           commands:
             - checkout
-            - docker build --tag $DOCKER_USERNAME/$DOCKER_IMAGE .
-            - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -v | grep 8.2.1
+            - docker build --tag $DOCKER_USERNAME/$DOCKER_IMAGE "."
+            - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -v | grep 8.2.2
             - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -v | grep OPcache
             - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -m | grep xdebug
             - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -r "xdebug_info();" | grep "3.2.0"
