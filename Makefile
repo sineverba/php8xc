@@ -1,7 +1,7 @@
 IMAGE_NAME=sineverba/php8xc
 CONTAINER_NAME=php8xc
 APP_VERSION=1.13.0-dev
-BUILDX_VERSION=0.10.2
+BUILDX_VERSION=0.10.3
 BINFMT_VERSION=qemu-v7.0.0-28
 
 build:
@@ -20,7 +20,7 @@ preparemulti:
 	docker buildx rm multiarch
 	docker buildx create --name multiarch --driver docker-container --use
 	
-multi:
+multi: preparemulti
 	docker buildx inspect --bootstrap --builder multiarch
 	docker buildx build \
 		--platform linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 \
@@ -28,13 +28,13 @@ multi:
 		"."
 
 test:
-	docker run --rm $(IMAGE_NAME):$(APP_VERSION) php -v | grep 8.2.2
+	docker run --rm $(IMAGE_NAME):$(APP_VERSION) php -v | grep 8.2.3
 	docker run --rm $(IMAGE_NAME):$(APP_VERSION) php -v | grep OPcache
 	docker run --rm $(IMAGE_NAME):$(APP_VERSION) php -m | grep xdebug
 	docker run --rm $(IMAGE_NAME):$(APP_VERSION) php -r "xdebug_info();" | grep "3.2.0"
 	docker run --rm $(IMAGE_NAME):$(APP_VERSION) php -m | grep pdo_pgsql
 	docker run --rm $(IMAGE_NAME):$(APP_VERSION) php -m | grep zip
-	docker run --rm $(IMAGE_NAME):$(APP_VERSION) /usr/bin/composer -V | grep "2.5.1"
+	docker run --rm $(IMAGE_NAME):$(APP_VERSION) /usr/bin/composer -V | grep "2.5.4"
 	docker run --rm $(IMAGE_NAME):$(APP_VERSION) php -i | grep "short_open_tag => Off => Off"
 	docker run --rm $(IMAGE_NAME):$(APP_VERSION) php -i | grep "memory_limit => 512M => 512M"
 
