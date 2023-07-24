@@ -1,7 +1,7 @@
 IMAGE_NAME=sineverba/php8xc
 CONTAINER_NAME=php8xc
-APP_VERSION=1.14.0-dev
-BUILDX_VERSION=0.10.3
+APP_VERSION=1.15.0-dev
+BUILDX_VERSION=0.11.2
 BINFMT_VERSION=qemu-v7.0.0-28
 
 build:
@@ -28,15 +28,16 @@ multi: preparemulti
 		"."
 
 test:
-	docker run --rm $(IMAGE_NAME):$(APP_VERSION) php -v | grep 8.2.3
+	docker run --rm $(IMAGE_NAME):$(APP_VERSION) php -v | grep 8.2.8
 	docker run --rm $(IMAGE_NAME):$(APP_VERSION) php -v | grep OPcache
 	docker run --rm $(IMAGE_NAME):$(APP_VERSION) php -m | grep xdebug
-	docker run --rm $(IMAGE_NAME):$(APP_VERSION) php -r "xdebug_info();" | grep "3.2.0"
+	docker run --rm $(IMAGE_NAME):$(APP_VERSION) php -r "xdebug_info();" | grep "3.2.2"
 	docker run --rm $(IMAGE_NAME):$(APP_VERSION) php -m | grep pdo_pgsql
 	docker run --rm $(IMAGE_NAME):$(APP_VERSION) php -m | grep zip
-	docker run --rm $(IMAGE_NAME):$(APP_VERSION) /usr/bin/composer -V | grep "2.5.4"
+	docker run --rm $(IMAGE_NAME):$(APP_VERSION) /usr/bin/composer -V | grep "2.5.8"
 	docker run --rm $(IMAGE_NAME):$(APP_VERSION) php -i | grep "short_open_tag => Off => Off"
 	docker run --rm $(IMAGE_NAME):$(APP_VERSION) php -i | grep "memory_limit => 512M => 512M"
 
 destroy:
+	docker image rm php:8.2.8-cli
 	docker image rm $(IMAGE_NAME):$(APP_VERSION)

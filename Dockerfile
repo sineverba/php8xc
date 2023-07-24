@@ -1,9 +1,9 @@
-FROM php:8.2.3-cli
+FROM php:8.2.8-cli
 # OpCache settings
 ENV PHP_OPCACHE_VALIDATE_TIMESTAMPS="0"
 ENV XDEBUG_MODE="debug,coverage"
 # Versions
-ARG XDEBUG_VERSION=3.2.0
+ARG XDEBUG_VERSION=3.2.2
 # Install system dependencies
 RUN apt-get update -y && apt-get upgrade -y && apt-get install -y \
     git \
@@ -23,7 +23,7 @@ RUN pecl install xdebug-${XDEBUG_VERSION}
 RUN docker-php-ext-install mysqli pdo pdo_mysql pdo_pgsql mbstring exif pcntl bcmath gd opcache zip \
     && docker-php-ext-enable mysqli pdo pdo_mysql pdo_pgsql mbstring exif pcntl bcmath gd xdebug
 # Get latest Composer
-COPY --from=composer:2.5.4 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.5.8 /usr/bin/composer /usr/bin/composer
 # Add custom ini files
 COPY config/10-shorttag.ini \
         config/20-memory-limit.ini \
