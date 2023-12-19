@@ -23,7 +23,7 @@ global_job_config:
     - name: DOCKER_IMAGE
       value: php8xc
     - name: BUILDX_VERSION
-      value: 0.11.2
+      value: 0.12.0
     - name: BINFMT_VERSION
       value: qemu-v7.0.0-28
 
