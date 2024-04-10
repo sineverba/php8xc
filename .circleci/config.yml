@@ -5,7 +5,7 @@ executors:
       image: ubuntu-2204:current
     resource_class: arm.large
     environment:
-      DOCKER_IMAGE: php74xc
+      DOCKER_IMAGE: php8xc
       BINFMT_VERSION: qemu-v7.0.0-28
       PHP_VERSION: 8.3.4
       COMPOSER_VERSION: 2.7.2
@@ -15,7 +15,7 @@ executors:
       image: ubuntu-2204:current
     resource_class: large
     environment:
-      DOCKER_IMAGE: php74xc
+      DOCKER_IMAGE: php8xc
       BINFMT_VERSION: qemu-v7.0.0-28
       PHP_VERSION: 8.3.4
       COMPOSER_VERSION: 2.7.2
