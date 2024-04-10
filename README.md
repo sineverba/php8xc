@@ -1,12 +1,16 @@
 php8xc: Docker image for PHP8 + Xdebug + Composer
 =================================================
 
-`docker pull sineverba/php8xc:latest`
+> Docker image built from **PHP8.y.z** CLI official + **X**debug + **C**omposer, for `linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64` architectures.
+
+`docker pull sineverba/php8xc:1.17.0`
 
 
 | CD / CI   |           |
 | --------- | --------- |
 | Semaphore CI | [![Build Status](https://sineverba.semaphoreci.com/badges/php8xc/branches/master.svg)](https://sineverba.semaphoreci.com/projects/php8xc) |
+| Circle CI | [![CircleCI](https://dl.circleci.com/status-badge/img/gh/sineverba/php8xc/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/sineverba/php8xc/tree/master) |
+| Docker Hub | `docker pull sineverba/php8xc:1.16.0` - [Link to image](https://hub.docker.com/r/sineverba/php8xc) |
 
 
 
@@ -23,7 +27,8 @@ Do you use it? **Star it!**
 
 | Github / Docker Image tag | PHP Version | Composer version | XDebug | Architectures |
 |---------------------------|-------------|------------------|--------| ------------- |
-| latest                    | 8.3.0       | 2.6.6            | 3.3.1  | linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 |
+| latest                    | 8.3.4       | 2.7.2            | 3.3.1  | linux/arm64,linux/amd64,linux/arm/v6,linux/arm/v7 |
+| 1.17.0                    | 8.3.4       | 2.7.2            | 3.3.1  | linux/arm64,linux/amd64,linux/arm/v6,linux/arm/v7 |
 | 1.16.0                    | 8.3.0       | 2.6.6            | 3.3.1  | linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 |
 | 1.15.0                    | 8.2.8       | 2.5.8            | 3.2.2  | linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 |
 | 1.14.0                    | 8.2.3       | 2.5.4            | 3.2.0  | linux/arm64/v8,linux/amd64,linux/arm/v6,linux/arm/v7 |
@@ -142,27 +147,3 @@ $ alias composer='docker run -it -w /data -v ${PWD}:/data --entrypoint "/usr/bin
 ### Issues with memory limit (on composer)
 
 `$ php -d memory_limit=-1 /usr/bin/composer require [...]`
-
-#### Build and test image locally
-
-```shell
-$ make build
-$ make test
-$ make destroy
-```
-
-+ Check images list
-
-`$ docker image ls`
-
-+ Clone the project
-
-`$ git clone git@github.com:sineverba/php8xc.git`
-
-+ Run from same folder
-
-`$ docker build --tag php8xc:x.y.z .`
-
-+ Check new image (php8xc:x.y.z)
-
-`$ docker image ls`
