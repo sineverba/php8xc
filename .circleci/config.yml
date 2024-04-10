@@ -1,0 +1,168 @@
+version: 2.1
+executors:
+  arm64_executor:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: arm.large
+    environment:
+      DOCKER_IMAGE: php74xc
+      BINFMT_VERSION: qemu-v7.0.0-28
+      PHP_VERSION: 8.3.4
+      COMPOSER_VERSION: 2.7.2
+      XDEBUG_VERSION: 3.3.1
+  amd64_executor:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large
+    environment:
+      DOCKER_IMAGE: php74xc
+      BINFMT_VERSION: qemu-v7.0.0-28
+      PHP_VERSION: 8.3.4
+      COMPOSER_VERSION: 2.7.2
+      XDEBUG_VERSION: 3.3.1
+      DELETE_TAG_TAG: 1.0.2
+jobs:
+  test:
+    executor: amd64_executor
+    steps:
+      - checkout
+      - run:
+          name: "Build image"
+          command: |
+            docker build \
+              --build-arg PHP_VERSION=$PHP_VERSION \
+              --build-arg COMPOSER_VERSION=$COMPOSER_VERSION \
+              --build-arg XDEBUG_VERSION=$XDEBUG_VERSION \
+              --tag $DOCKER_LOGIN/$DOCKER_IMAGE:test \
+              '.'
+      - run:
+          name: "Test image"
+          command: |
+            docker run --rm $DOCKER_LOGIN/$DOCKER_IMAGE:test php -v | grep $PHP_VERSION
+            docker run --rm $DOCKER_LOGIN/$DOCKER_IMAGE:test php -v | grep OPcache
+            docker run --rm $DOCKER_LOGIN/$DOCKER_IMAGE:test php -m | grep xdebug
+            docker run --rm $DOCKER_LOGIN/$DOCKER_IMAGE:test php -r "xdebug_info();" | grep $XDEBUG_VERSION
+            docker run --rm $DOCKER_LOGIN/$DOCKER_IMAGE:test php -m | grep pdo_pgsql
+            docker run --rm $DOCKER_LOGIN/$DOCKER_IMAGE:test /usr/bin/composer -V | grep $COMPOSER_VERSION
+            docker run --rm $DOCKER_LOGIN/$DOCKER_IMAGE:test php -i | grep "short_open_tag => Off => Off"
+            docker run --rm $DOCKER_LOGIN/$DOCKER_IMAGE:test php -i | grep "memory_limit => 512M => 512M"
+  build_arm64:
+    executor: arm64_executor
+    steps:
+      - checkout
+      - run:
+          name: "Login to Docker HUB"
+          command: docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
+      - run:
+          name: "Install tonistiigi/binfmt"
+          command: docker run --rm --privileged tonistiigi/binfmt:$BINFMT_VERSION --install all
+      - run:
+          name: "Create buildx multiarch"
+          command: |
+            docker buildx create \
+            --name multiarch \
+            --use \
+            && docker buildx inspect \
+            --bootstrap \
+            --builder \
+            multiarch
+      - run:
+          name: "Build image and push to Docker HUB"
+          command: |
+            docker buildx build \
+              --cache-to=type=inline \
+              --platform linux/arm/v6,linux/arm/v7,linux/arm64 \
+              --build-arg PHP_VERSION=$PHP_VERSION \
+              --build-arg COMPOSER_VERSION=$COMPOSER_VERSION \
+              --build-arg XDEBUG_VERSION=$XDEBUG_VERSION \
+              --tag $DOCKER_LOGIN/$DOCKER_IMAGE:cache-arm \
+              --push \
+              '.'
+  build_amd64:
+    executor: amd64_executor
+    steps:
+      - checkout
+      - run:
+          name: "Login to Docker HUB"
+          command: docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
+      - run:
+          name: "Install tonistiigi/binfmt"
+          command: docker run --rm --privileged tonistiigi/binfmt:$BINFMT_VERSION --install all
+      - run:
+          name: "Create buildx multiarch"
+          command: |
+            docker buildx create \
+            --name multiarch \
+            --use \
+            && docker buildx inspect \
+            --bootstrap \
+            --builder \
+            multiarch
+      - run:
+          name: "Build image and push to Docker HUB"
+          command: |
+            docker buildx build \
+            --cache-from type=registry,ref=$DOCKER_LOGIN/$DOCKER_IMAGE:cache-arm \
+            --platform linux/amd64,linux/arm64,linux/arm/v6,linux/arm/v7 \
+            --build-arg PHP_VERSION=$PHP_VERSION \
+            --build-arg COMPOSER_VERSION=$COMPOSER_VERSION \
+            --build-arg XDEBUG_VERSION=$XDEBUG_VERSION \
+            --tag $DOCKER_LOGIN/$DOCKER_IMAGE:$CIRCLE_TAG \
+            --tag $DOCKER_LOGIN/$DOCKER_IMAGE:latest \
+            --push \
+            "."
+  delete_cache_arm:
+    executor: amd64_executor
+    steps:
+      - run:
+          name: "Login to Docker HUB"
+          command: docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
+      - run:
+          name: "Remove cache arm image"
+          command: |
+            docker run \
+            -it \
+            --rm \
+            --name $DOCKER_IMAGE \
+            -e DOCKER_USERNAME=$DOCKER_LOGIN \
+            -e DOCKER_PASSWORD=$DOCKER_PASSWORD \
+            -e ORGANIZATION=$DOCKER_LOGIN \
+            -e IMAGE=$DOCKER_IMAGE \
+            -e TAG=cache-arm \
+            sineverba/delete-tag:$DELETE_TAG_TAG
+workflows:
+  test_and_build_images:
+    jobs:
+      - test:
+          context: SECRETS
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+      - build_arm64:
+          context: SECRETS
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/
+      - build_amd64:
+          context: SECRETS
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/
+          requires:
+            - build_arm64
+      - delete_cache_arm:
+          context: SECRETS
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/
+          requires:
+            - build_amd64
+

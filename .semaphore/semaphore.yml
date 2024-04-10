@@ -7,7 +7,6 @@ agent:
     os_image: ubuntu2004
 
 global_job_config:
-
   secrets:
     - name: ACCESS_TOKENS
 
@@ -20,28 +19,34 @@ global_job_config:
       value: sineverba
     - name: DOCKER_IMAGE
       value: php8xc
+    - name: PHP_VERSION
+      value: 8.3.4
+    - name: COMPOSER_VERSION
+      value: 2.7.2
+    - name: XDEBUG_VERSION
+      value: 3.3.1
 
 blocks:
-  - name: 'Build and test'
+  - name: "Test"
     skip:
       when: "tag =~ '.*'"
     task:
       jobs:
-        - name: 'Build and test'
+        - name: "Build and test"
           commands:
             - checkout
-            - docker build --tag $DOCKER_USERNAME/$DOCKER_IMAGE "."
-            - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -v | grep 8.3.0
+            - >-
+              docker build 
+              --tag $DOCKER_USERNAME/$DOCKER_IMAGE 
+              --build-arg PHP_VERSION=$PHP_VERSION 
+              --build-arg COMPOSER_VERSION=$COMPOSER_VERSION 
+              --build-arg XDEBUG_VERSION=$XDEBUG_VERSION
+              "."
+            - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -v | grep $PHP_VERSION
             - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -v | grep OPcache
             - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -m | grep xdebug
-            - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -r "xdebug_info();" | grep "3.3.1"
+            - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -r "xdebug_info();" | grep $XDEBUG_VERSION
             - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -m | grep pdo_pgsql
-            - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE /usr/bin/composer -V | grep "2.6.6"
+            - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE /usr/bin/composer -V | grep $COMPOSER_VERSION
             - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -i | grep "short_open_tag => Off => Off"
             - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -i | grep "memory_limit => 512M => 512M"
-
-promotions:
-  - name: Deploy
-    pipeline_file: build-deploy.yml
-    auto_promote:
-      when: "result = 'passed' and tag =~ '.*'"
