@@ -1,4 +1,7 @@
-# 1.17.1
+# Next version
++ Upgrade dependencies
+
+## 1.17.1
 + Fix CircleCI
 
 ## 1.17.0
