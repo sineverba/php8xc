@@ -1,4 +1,4 @@
-# Next version
+# 1.18.0
 + Upgrade dependencies
 + Add Soap module
 
