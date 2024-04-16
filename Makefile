@@ -1,9 +1,9 @@
 IMAGE_NAME=sineverba/php8xc
 CONTAINER_NAME=php8xc
 APP_VERSION=1.17.0-dev
-PHP_VERSION=8.3.4
+PHP_VERSION=8.3.6
 COMPOSER_VERSION=2.7.2
-XDEBUG_VERSION=3.3.1
+XDEBUG_VERSION=3.3.2
 BUILDX_VERSION=0.13.1
 BINFMT_VERSION=qemu-v7.0.0-28
 
@@ -48,6 +48,7 @@ test:
 	@docker run --rm $(IMAGE_NAME):$(APP_VERSION) /usr/bin/composer -V | grep $(COMPOSER_VERSION)
 	@docker run --rm $(IMAGE_NAME):$(APP_VERSION) php -i | grep "short_open_tag => Off => Off"
 	@docker run --rm $(IMAGE_NAME):$(APP_VERSION) php -i | grep "memory_limit => 512M => 512M"
+	@docker run --rm $(IMAGE_NAME):$(APP_VERSION) php -m | grep soap
 
 destroy:
 	docker image rm php:$(PHP_VERSION)-cli
