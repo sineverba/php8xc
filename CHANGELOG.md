@@ -1,5 +1,6 @@
 # Next version
 + Upgrade dependencies
++ Add Soap module
 
 ## 1.17.1
 + Fix CircleCI

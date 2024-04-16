@@ -50,3 +50,4 @@ blocks:
             - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE /usr/bin/composer -V | grep $COMPOSER_VERSION
             - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -i | grep "short_open_tag => Off => Off"
             - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -i | grep "memory_limit => 512M => 512M"
+            - docker run --rm $DOCKER_USERNAME/$DOCKER_IMAGE php -i | grep soap

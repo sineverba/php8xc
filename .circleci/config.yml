@@ -46,6 +46,7 @@ jobs:
             docker run --rm $DOCKER_LOGIN/$DOCKER_IMAGE:test /usr/bin/composer -V | grep $COMPOSER_VERSION
             docker run --rm $DOCKER_LOGIN/$DOCKER_IMAGE:test php -i | grep "short_open_tag => Off => Off"
             docker run --rm $DOCKER_LOGIN/$DOCKER_IMAGE:test php -i | grep "memory_limit => 512M => 512M"
+            docker run --rm $DOCKER_LOGIN/$DOCKER_IMAGE:test php -i | grep soap
   build_arm64:
     executor: arm64_executor
     steps:

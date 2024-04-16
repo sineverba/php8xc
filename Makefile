@@ -48,6 +48,7 @@ test:
 	@docker run --rm $(IMAGE_NAME):$(APP_VERSION) /usr/bin/composer -V | grep $(COMPOSER_VERSION)
 	@docker run --rm $(IMAGE_NAME):$(APP_VERSION) php -i | grep "short_open_tag => Off => Off"
 	@docker run --rm $(IMAGE_NAME):$(APP_VERSION) php -i | grep "memory_limit => 512M => 512M"
+	@docker run --rm $(IMAGE_NAME):$(APP_VERSION) php -m | grep soap
 
 destroy:
 	docker image rm php:$(PHP_VERSION)-cli
