@@ -20,7 +20,7 @@ global_job_config:
     - name: DOCKER_IMAGE
       value: php8xc
     - name: PHP_VERSION
-      value: 8.3.6
+      value: 8.4.4
     - name: COMPOSER_VERSION
       value: 2.8.6
     - name: XDEBUG_VERSION
