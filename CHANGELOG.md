@@ -1,4 +1,5 @@
-## 1.19.0
+# Next version
++ Upgrade dependencies
 + Upgrade dependencies
 
 ## 1.18.0
