@@ -2,24 +2,24 @@ version: 2.1
 executors:
   arm64_executor:
     machine:
-      image: ubuntu-2204:current
+      image: ubuntu-2404:2024.11.1
     resource_class: arm.large
     environment:
       DOCKER_IMAGE: php8xc
-      BINFMT_VERSION: qemu-v7.0.0-28
+      BINFMT_VERSION: qemu-v9.2.2-52
       PHP_VERSION: 8.3.6
-      COMPOSER_VERSION: 2.7.2
-      XDEBUG_VERSION: 3.3.2
+      COMPOSER_VERSION: 2.8.6
+      XDEBUG_VERSION: 3.4.1
   amd64_executor:
     machine:
-      image: ubuntu-2204:current
+      image: ubuntu-2404:2024.11.1
     resource_class: large
     environment:
       DOCKER_IMAGE: php8xc
-      BINFMT_VERSION: qemu-v7.0.0-28
+      BINFMT_VERSION: qemu-v9.2.2-52
       PHP_VERSION: 8.3.6
-      COMPOSER_VERSION: 2.7.2
-      XDEBUG_VERSION: 3.3.2
+      COMPOSER_VERSION: 2.8.6
+      XDEBUG_VERSION: 3.4.1
       DELETE_TAG_TAG: 1.0.2
 jobs:
   test:
