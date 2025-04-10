@@ -1,4 +1,8 @@
-# 1.19.0
+# 1.20.0
++ Upgrade dependencies
++ Refactor Dockerfile
+
+## 1.19.0
 + Upgrade dependencies
 + Upgrade dependencies
 

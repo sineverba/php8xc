@@ -7,9 +7,9 @@ executors:
     environment:
       DOCKER_IMAGE: php8xc
       BINFMT_VERSION: qemu-v9.2.2-52
-      PHP_VERSION: 8.3.6
-      COMPOSER_VERSION: 2.8.6
-      XDEBUG_VERSION: 3.4.1
+      PHP_VERSION: 8.4.5
+      COMPOSER_VERSION: 2.8.8
+      XDEBUG_VERSION: 3.4.2
   amd64_executor:
     machine:
       image: ubuntu-2404:2024.11.1
@@ -17,9 +17,9 @@ executors:
     environment:
       DOCKER_IMAGE: php8xc
       BINFMT_VERSION: qemu-v9.2.2-52
-      PHP_VERSION: 8.3.6
-      COMPOSER_VERSION: 2.8.6
-      XDEBUG_VERSION: 3.4.1
+      PHP_VERSION: 8.4.5
+      COMPOSER_VERSION: 2.8.8
+      XDEBUG_VERSION: 3.4.2
       DELETE_TAG_TAG: 1.0.2
 jobs:
   test:
