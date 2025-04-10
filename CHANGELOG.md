@@ -1,4 +1,4 @@
-# Next version
+# 1.20.0
 + Upgrade dependencies
 + Refactor Dockerfile
 
